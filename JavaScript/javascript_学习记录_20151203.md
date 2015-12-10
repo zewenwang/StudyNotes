@@ -1,0 +1,268 @@
+## JavaScript 学习记录
+
+Date:  20151203
+
+#### 1. Code Tips
+```JavaScript
+document.write();
+
+document.getElementById();
+document.getElementsByTagName();
+
+x=document.getElementById("demo")  //查找元素
+x.innerHTML="Hello JavaScript";    //改变内容
+
+var x = 'It\'s "alright"';              //It's "alright"
+var y = "He 'is' called \"Johnny\"";    //He 'is' called "Johnny"
+
+console.log() //方法在浏览器中显示 JavaScript 值
+
+var x = "John";                 // typeof x  返回 String
+var y = new String("John");     // typeof y  返回 Object, 不建议用该写法
+(x === y) // 结果为 false，因为是x字符串，y 是对象
+// === 为绝对相等，即数据类型与值都必须相等。
+
+//标签：
+labelName:{
+    ...
+    break labelName;            // 跳出标签代码块
+    ...
+}
+
+```
+#### 2. Tips
+1. 脚本可位于 HTML 的 <body> 或 <head> 部分中，或者同时存在于两个部分中。
+<script>......</script>
+<script src="myScript.js"></script>
+2. 使用 document.write() 仅仅向文档输出写内容。
+如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖。
+3. JavaScript 对大小写敏感
+4. 在 JavaScript 中，用分号来结束语句是可选的。
+5. for ... in : 用于遍历数组或者对象的属性（对数组或者对象的属性进行循环操作）。
+6. 未使用值来声明的变量，其值实际上是 undefined；
+7. 如果您把值赋给尚未声明的变量，该变量将被自动作为全局变量声明。
+8. JavaScript 变量生命周期在它声明时初始化。
+局部变量在函数执行完毕后销毁。
+全局变量在页面关闭后销毁。
+9. 不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用.
+10. 两个数字相加，返回数字相加的和，如果数字与字符串相加，返回字符串
+11. === 绝对等于（值和类型均相等）
+!== 绝对不等于（值或类型不相等）
+12. 支持条件运算符： (condition) ? value1 : vaule2;
+13. switch语句支持数值型、字符型、及其混用
+```JavaScript
+var d = '0';
+switch (d) {
+  case 0:
+    x = 0;
+    break;
+  case 1:
+    x = 1;
+    break;
+  case '0':
+    x = "'0'";
+    break;
+}
+// 此时 x 的值为'0'
+```
+14. for in 循环，得到的仅是索引
+```JavaScript
+var array=['asd','as','wer','yu'];
+for(var a in array){
+    document.write(a+"<br/>");
+}
+// result: 0 1 2 3
+for(var a in array){
+    document.write(array[a]+" ");
+}
+// result: asd as wer yu
+```
+15. typeof操作符
+```JavaScript
+var person = null;      // Value is null, but type is still an object
+var person = undefined; // 值为 undefined, type is undefined
+var person;             // 值为 undefined, type is undefined
+
+null === undefined           // false
+null == undefined            // true
+```
+
+
+#### 3. let vs var
+let: 块级作用域，先声明、后使用，禁止重复声明， start since ES6
+
+```JavaScript
+function allyIlliterate() {
+    //tuce is *not* visible out here
+    for( let tuce = 0; tuce < 5; tuce++ ) {
+        //tuce is only visible in here (and in the for() parentheses)
+    };
+    //tuce is *not* visible out here
+};
+
+function byE40() {
+    //nish *is* visible out here
+    for( var nish = 0; nish < 5; nish++ ) {
+        //nish is visible to the whole function
+    };
+    //nish *is* visible out here
+};
+
+function conjunctionJunctionWhatsYour() {
+    //sNotGetCrazy is *not* visible out here
+    let( sNotGetCrazy = 'now' ) {
+        //sNotGetCrazy is only visible in here
+    };
+    //sNotGetCrazy is *not* visible out here
+};
+
+```
+
+1. 可用性
+Chrome 41.0 +
+Firefox 39 +
+Internet Explorer 11
+io.js 3.0.0 +
+Microsoft Edge
+Node.js 0.11 + （需开启Harmony flag）
+
+#### 4. 常见的HTML事件
+
+事件 | 描述
+: | :
+onchange | HTML 元素改变
+onclick | 用户点击 HTML 元素
+onmouseover | 用户在一个HTML元素上移动鼠标
+onmouseout | 用户从一个HTML元素上移开鼠标
+onkeydown | 用户按下键盘按键
+onload | 浏览器已完成页面的加载
+
+#### 5. 字符串属性和方法
+
+属性 | 描述
+: | :
+constructor | 返回创建字符串属性的函数
+length | 返回字符串的长度
+prototype | 允许您向对象添加属性和方法
+
+Method | 描述
+: | :
+charAt() | 返回指定索引位置的字符
+charCodeAt() | 返回指定索引位置字符的 Unicode 值
+concat() | 连接两个或多个字符串，返回连接后的字符串
+fromCharCode() | 将字符转换为 Unicode 值
+indexOf() | 返回字符串中检索指定字符第一次出现的位置
+lastIndexOf() | 返回字符串中检索指定字符最后一次出现的位置
+*localeCompare()* | 用本地特定的顺序来比较两个字符串
+**match()** | 找到一个或多个正则表达式的匹配
+**replace()** | 替换与正则表达式匹配的子串
+**search()** | 检索与正则表达式相匹配的值
+*slice()* | 提取字符串的片断，并在新的字符串中返回被提取的部分
+**split()** | 把字符串分割为子字符串数组
+substr() | 从起始索引号提取字符串中指定数目的字符
+**substring()** | 提取字符串中两个指定的索引号之间的字符
+toLocaleLowerCase() | 根据主机的语言环境把字符串转换为小写，只有几种语言（如土耳其语）具有地方特有的大小写映射
+toLocaleUpperCase() | 根据主机的语言环境把字符串转换为大写，只有几种语言（如土耳其语）具有地方特有的大小写映射
+toLowerCase() | 把字符串转换为小写
+toUpperCase() | 把字符串转换为大写
+**trim()** | 移除字符串首尾空白
+toString() | 返回字符串对象值
+valueOf() | 返回某个字符串对象的原始值
+
+
+#### 6. 类型转换
+- JavaScript 数据类型
+    - 5 中不同的数据类型：
+    string number boolean object function
+    - 3 种对象类型：typeof都是object
+    Object Date Array
+    - 2 个不包含任何值的数据类型：
+    null undefined
+```JavaScript
+typeof "John"                 // 返回 string
+typeof 3.14                   // 返回 number
+typeof NaN                    // 返回 number
+typeof false                  // 返回 boolean
+typeof [1,2,3,4]              // 返回 object
+typeof {name:'John', age:34}  // 返回 object
+typeof new Date()             // 返回 object
+typeof function () {}         // 返回 function
+typeof myCar                  // 返回 undefined (if myCar is not declared)
+typeof null                   // 返回 object
+typeof undefined              // 返回 undefined
+```
+
+- constructor 属性
+```JavaScript
+"John".constructor                 // 返回函数 String()  { [native code] }
+(3.14).constructor                 // 返回函数 Number()  { [native code] }
+false.constructor                  // 返回函数 Boolean() { [native code] }
+[1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
+{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
+new Date().constructor             // 返回函数 Date()    { [native code] }
+function () {}.constructor         // 返回函数 Function(){ [native code] }
+
+// 判断是否是Array类型
+function isArray(myArray) {
+    return myArray.constructor.toString().indexOf("Array") > -1;
+}
+```
+
+- 类型转换
+
+Number 方法 | 描述
+: | :
+toExponential() | 把对象的值转换为指数计数法。
+**toFixed()** | 把数字转换为字符串，结果的小数点后有指定位数的数字。
+toPrecision() | 把数字格式化为指定的长度。
+parseFloat() | 解析一个字符串，并返回一个浮点数。
+parseInt() | 解析一个字符串，并返回一个整数。
+
+```JavaScript
+var y = "5";      // y 是一个字符串
+var x = + y;      // x 是一个数字
+
+var y = "John";   // y 是一个字符串
+var x = + y;      // x 是一个数字 (NaN)
+
+Number(false)     // 返回 0
+Number(true)      // 返回 1
+
+Number("3.14")    // 返回 3.14
+Number(" ")       // 返回 0
+Number("")        // 返回 0
+Number("99 88")   // 返回 NaN
+
+d = new Date();
+Number(d)          // 返回 1404568027739
+d.getTime()        // 返回 1404568027739
+```
+
+Date 方法 | 描述
+:|:
+getDate() | 从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+getDay() | 从 Date 对象返回一周中的某一天 (0 ~ 6)。
+getFullYear() | 从 Date 对象以四位数字返回年份。
+getHours() | 返回 Date 对象的小时 (0 ~ 23)。
+getMilliseconds() | 返回 Date 对象的毫秒(0 ~ 999)。
+getMinutes() | 返回 Date 对象的分钟 (0 ~ 59)。
+getMonth() | 从 Date 对象返回月份 (0 ~ 11)。
+getSeconds() | 返回 Date 对象的秒数 (0 ~ 59)。
+getTime() | 返回 1970 年 1 月 1 日至今的毫秒数。
+
+- 自动类型转换
+当 JavaScript 尝试操作一个 "错误" 的数据类型时，会自动转换为 "正确" 的数据类型。
+但输出结果不一定是你所期望的：
+```JavaScript
+5 + null    // 返回 5         because null is converted to 0
+"5" + null  // 返回"5null"   because null is converted to "null"
+"5" + 1     // 返回 "51"      because 1 is converted to "1"  
+"5" - 1     // 返回 4         because "5" is converted to 5
+```
+
+- 自动转换为字符串
+```JavaScript
+// if myVar = {name:"Fjohn"}  // toString 转换为 "[object Object]"
+// if myVar = [1,2,3,4]       // toString 转换为 "1,2,3,4"
+// if myVar = new Date()      // toString 转换为 "Fri Jul 18 2014 09:08:55 GMT+0200"
+```
